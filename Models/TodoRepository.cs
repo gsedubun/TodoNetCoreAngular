@@ -17,25 +17,26 @@ namespace TodoNetCoreAngular.Models
         {
             context.Todo.Add(todo);
             context.SaveChanges();
-            return new TodoViewModel{ID=todo.ID, Title=todo.Title, TotalItem=todo.TodoItem.Count};
+            return new TodoViewModel { ID = todo.ID, Title = todo.Title, TotalItem = todo.TodoItem.Count };
         }
-        public TodoViewModel Addtodoitem(int id,TodoItem todo)
+        public TodoViewModel Addtodoitem(int id, TodoItem todo)
         {
             var d = context.Todo.Find(id);
             d.TodoItem.Add(todo);
             context.SaveChanges();
-            return new TodoViewModel{ ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count};
+            return new TodoViewModel { ID = d.ID, Title = d.Title, TotalItem = d.TodoItem.Count };
         }
         public IEnumerable<TodoViewModel> Get()
         {
-            return context.Todo.Select(d=> new TodoViewModel { ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count  } ).ToList();
+            return context.Todo.Select(d => new TodoViewModel { ID = d.ID, Title = d.Title, TotalItem = d.TodoItem.Count }).ToList();
         }
-        public IEnumerable<TodoItem> GetTodoItem(int id){
-            return context.TodoItem.Where(d => d.Todo.ID == id).Select(d=> new TodoItem{ ID=d.ID, Item=d.Item  }).ToList();
+        public IEnumerable<TodoItem> GetTodoItem(int id)
+        {
+            return context.TodoItem.Where(d => d.Todo.ID == id).Select(d => new TodoItem { ID = d.ID, Item = d.Item }).ToList();
         }
         public TodoViewModel Get(int id)
         {
-            return context.Todo.Select(d=> new TodoViewModel{ ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count}).SingleOrDefault(d => d.ID == id);
+            return context.Todo.Select(d => new TodoViewModel { ID = d.ID, Title = d.Title, TotalItem = d.TodoItem.Count }).SingleOrDefault(d => d.ID == id);
         }
     }
 
@@ -48,11 +49,12 @@ namespace TodoNetCoreAngular.Models
 
         }
     }
-public class TodoViewModel{
-      public int ID { get; set; }
+    public class TodoViewModel
+    {
+        public int ID { get; set; }
         public string Title { get; set; }
         public int TotalItem { get; set; }
-}
+    }
     public class Todo
     {
         public int ID { get; set; }
@@ -68,7 +70,6 @@ public class TodoViewModel{
     {
         public int ID { get; set; }
         public string Item { get; set; }
-
         public virtual Todo Todo { get; set; }
     }
 }
