@@ -24,6 +24,14 @@ namespace TodoNetCoreAngular.Controllers
 
         [HttpGet]
         [Route("[action]")]
+        public IActionResult GetItem(int todoId)
+        {
+            var data = todos.GetTodoItem(todoId);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
         public IActionResult Get(int id)
         {
             var data = todos.Get(id);
@@ -33,14 +41,10 @@ namespace TodoNetCoreAngular.Controllers
         [Route("[action]")]
         public IActionResult Additem(int id, [FromBody] TodoItem todoItem)
         {
-            var data = todos.Get(id);
-            if (data != null)
-            {
-                data.TodoItem.Add(todoItem);
-            }
+            var data = todos.Addtodoitem(id,todoItem);
             return Ok(data);
         }
-        
+
         [HttpPost]
         [Route("[action]")]
         public IActionResult Addtodo([FromBody] Todo todo)

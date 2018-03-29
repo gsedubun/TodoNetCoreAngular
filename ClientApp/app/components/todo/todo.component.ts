@@ -8,16 +8,33 @@ import { TodoService } from "../service/Todo.service";
     templateUrl: "./todo.component.html"
 })
 export class TodoComponent {
-    public todos: ITodo[]=[];
+    public todos: ITodo[] = [];
+    public todo: ITodo = {title:"" ,id:0, TotalItem:0 };
 
     constructor(private http: Http, private Todoservice: TodoService) {
-        this.todos = Todoservice.getTodo();
+        this.getTodo();
     }
-
+    initempty(): void {
+        this.todo =  {title:"" ,id:0, TotalItem:0 };
+    }
+    getTodo(): void {
+        this.Todoservice.getTodo().subscribe(result => { this.todos = result.json() as ITodo[]; }, error => {
+            console.log(error);
+        });
+    }
+    newtodo(): void {
+        if(this.todo.title !== "") {
+            const data: ITodo = this.Todoservice.addtodo(this.todo);
+            this.getTodo();
+            console.log(data);
+            this.initempty();
+        }
+    }
 }
 
 export interface ITodo {
     title: string;
     id: number;
-    todoItem: ITodoItem[];
+    
+    TotalItem: number;
 }

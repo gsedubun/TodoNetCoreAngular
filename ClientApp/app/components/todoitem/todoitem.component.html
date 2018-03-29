@@ -3,14 +3,14 @@
 <p>Editint item {{ todo.title }}.</p>
 
 <p *ngIf="!todo"><em>Loading...</em></p>
-<div>
-<label>item: 
-    <input [(ngModel)]="todoitem.item"  placeholder="item">
-</label>
-    <button (click)="Additem(todoitem)">Add</button>
-
+<!-- <label>item: </label>  -->
+<div class="col-md-3 input-group">
+<input [(ngModel)]="todoitem.item" class="form-control " placeholder="new todo item"/>
+<span class="input-group-btn">
+    <button (click)="Additem(todoitem)" class="btn  btn-primary " >Add</button>
+</span>
 </div>
-<table class='table' *ngIf="todo">
+<table class='table' *ngIf="todoItems">
     <thead>
         <tr>
             <th>ID</th>
@@ -18,10 +18,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let todoitem of todo.todoItems">
-            <td>{{ todo.id }}</td>
-            <td>{{ todo.item }}</td>
+        <tr *ngFor="let todoitem of todoItems">
+            <td>{{ todoitem.id }}</td>
+            <td>{{ todoitem.item }}</td>
         </tr>
     </tbody>
 </table>
-<button (click)="goback()">back</button>
+<button (click)="goback()" class="btn-default btn">back</button>

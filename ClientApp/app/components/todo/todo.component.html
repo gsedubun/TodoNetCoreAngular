@@ -2,8 +2,15 @@
 
 <p>This component is to run todo app.</p>
 
-<!-- <p *ngIf="!todos"><em>Loading...</em></p> -->
-
+<p *ngIf="!todos"><em>Loading...</em></p>
+<div class="col-md-3 input-group">
+    <!-- <label>New todo
+    </label> -->
+    <input [(ngModel)]="todo.title" class="form-control"  placeholder="New todo title.">
+    <span class="input-group-btn">
+    <button (click)="newtodo()" class="btn btn-primary">Submit</button>
+</span>
+</div>
 <table class='table' *ngIf="todos">
     <thead>
         <tr>
@@ -14,8 +21,7 @@
     <tbody>
         <tr *ngFor="let todo of todos">
             <td><a routerLink="/todo/{{todo.id}}"> {{ todo.title }}</a></td>
-            <td>{{ todo.todoItem.length }}</td>
+            <td>{{ todo.totalItem }}</td>
         </tr>
     </tbody>
 </table>
-<a routerLink="/todo/{{todo.id}}"> {{ todo.title }}</a>

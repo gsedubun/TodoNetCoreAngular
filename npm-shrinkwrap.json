@@ -82,7 +82,7 @@
     },
     "@angular/cli": {
       "version": "1.7.3",
-      "from": "https://registry.npmjs.org/@angular/cli/-/cli-1.7.3.tgz",
+      "from": "@angular/cli@latest",
       "resolved": "https://registry.npmjs.org/@angular/cli/-/cli-1.7.3.tgz",
       "dev": true,
       "dependencies": {

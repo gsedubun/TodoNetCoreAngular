@@ -13,21 +13,29 @@ namespace TodoNetCoreAngular.Models
         {
             this.context = opt;
         }
-        public Todo Addtodo(Todo todo)
+        public TodoViewModel Addtodo(Todo todo)
         {
             context.Todo.Add(todo);
             context.SaveChanges();
-            return todo;
+            return new TodoViewModel{ID=todo.ID, Title=todo.Title, TotalItem=todo.TodoItem.Count};
         }
-
-        public IEnumerable<Todo> Get()
+        public TodoViewModel Addtodoitem(int id,TodoItem todo)
         {
-            return context.Todo.ToList();
+            var d = context.Todo.Find(id);
+            d.TodoItem.Add(todo);
+            context.SaveChanges();
+            return new TodoViewModel{ ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count};
         }
-
-        public Todo Get(int id)
+        public IEnumerable<TodoViewModel> Get()
         {
-            return context.Todo.SingleOrDefault(d => d.ID == id);
+            return context.Todo.Select(d=> new TodoViewModel { ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count  } ).ToList();
+        }
+        public IEnumerable<TodoItem> GetTodoItem(int id){
+            return context.TodoItem.Where(d => d.Todo.ID == id).Select(d=> new TodoItem{ ID=d.ID, Item=d.Item  }).ToList();
+        }
+        public TodoViewModel Get(int id)
+        {
+            return context.Todo.Select(d=> new TodoViewModel{ ID=d.ID, Title=d.Title, TotalItem=d.TodoItem.Count}).SingleOrDefault(d => d.ID == id);
         }
     }
 
@@ -40,12 +48,16 @@ namespace TodoNetCoreAngular.Models
 
         }
     }
-
+public class TodoViewModel{
+      public int ID { get; set; }
+        public string Title { get; set; }
+        public int TotalItem { get; set; }
+}
     public class Todo
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public List<TodoItem> TodoItem { get; set; }
+        public virtual List<TodoItem> TodoItem { get; set; }
         public Todo()
         {
             TodoItem = new List<TodoItem>();
