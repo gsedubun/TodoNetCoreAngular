@@ -1,0 +1,27 @@
+<h1>Todo item {{ todo.id }} </h1>
+
+<p>Editint item {{ todo.title }}.</p>
+
+<p *ngIf="!todo"><em>Loading...</em></p>
+<div>
+<label>item: 
+    <input [(ngModel)]="todoitem.item"  placeholder="item">
+</label>
+    <button (click)="Additem(todoitem)">Add</button>
+
+</div>
+<table class='table' *ngIf="todo">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Item</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todoitem of todo.todoItems">
+            <td>{{ todo.id }}</td>
+            <td>{{ todo.item }}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="goback()">back</button>
