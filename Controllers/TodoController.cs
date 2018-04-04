@@ -54,6 +54,18 @@ namespace TodoNetCoreAngular.Controllers
             return Ok(data);
         }
 
+        [HttpDelete]
+        [Route("[action]")]
+        public IActionResult Deletetodo(int id)
+        {
+            var data= todos.Delete(id);
+
+            if(data<1)
+                return BadRequest("Todo  "+id+" is not found.");
+            
+            return Ok(data);
+        }
+
     }
 
 

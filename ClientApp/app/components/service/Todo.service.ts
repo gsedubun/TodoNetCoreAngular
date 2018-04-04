@@ -1,5 +1,5 @@
 import {Http, RequestOptionsArgs, RequestOptions, Headers} from "@angular/http";
-import { Component, Injectable } from "@angular/core";
+import { Component, Injectable, Inject } from "@angular/core";
 import { LoggerService } from "./logger.service";
 import { ITodo } from "../todo/todo.component";
 import { ITodoItem } from "../todoitem/todoitem.component";
@@ -18,11 +18,11 @@ export class TodoService {
         });
         return posted;
     }
-    private  BASE_URL: String = "http://localhost:5000/";
+    //private  BASE_URL: String = "http://demo.visionet.co.id/todonetcore/";
     private opt: RequestOptions = new RequestOptions({
         headers: new Headers({"content-type":"application/json"})
     });
-    constructor(private http: Http, private logger: LoggerService) {
+    constructor(private http: Http, private logger: LoggerService,  @Inject("BASE_URL") private BASE_URL: string) {
 
     }
     getTodoItem(todoId: number) {
@@ -54,10 +54,10 @@ export class TodoService {
     }
 }
 
-export class TodoItemService {
-    private  BASE_URL: String = "http://localhost:5000/";
+// export class TodoItemService {
+//     private  BASE_URL: String = "http://localhost:5000/";
 
-    constructor(private http: Http, private logger: LoggerService) {
+//     constructor(private http: Http, private logger: LoggerService) {
 
-    }
-}
+//     }
+// }

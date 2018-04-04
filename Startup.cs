@@ -28,7 +28,7 @@ namespace TodoNetCoreAngular
             services.AddDbContext<TodoDbContext>(opt=>{
                 opt.UseInMemoryDatabase("todoangular");
             });
-            services.AddTransient<TodoRepository>();
+            services.AddScoped<TodoRepository>();
             services.AddMvc();
         }
 

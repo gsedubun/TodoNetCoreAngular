@@ -10,10 +10,10 @@ import { TodoService } from "../service/Todo.service";
     templateUrl: "./todoitem.component.html"
 })
 export class TodoitemComponent {
-    private todo: ITodo = { id:0, title:"", TotalItem:0};
-    private todoId: number = 0;
-    private todoitem: ITodoItem = { item:"", id:0 };
-    private todoItems: ITodoItem[] = [];
+    public todo: ITodo = { id:0, title:"", TotalItem:0};
+    public todoId: number = 0;
+    public todoitem: ITodoItem = { item:"", id:0 };
+    public todoItems: ITodoItem[] = [];
 
     constructor(private http: Http, private todoservice: TodoService, private route: ActivatedRoute,private location: Location) {
         const id : any = this.route.snapshot.paramMap.get("id");

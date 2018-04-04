@@ -34,9 +34,16 @@ namespace TodoNetCoreAngular.Models
         {
             return context.TodoItem.Where(d => d.Todo.ID == id).Select(d => new TodoItem { ID = d.ID, Item = d.Item }).ToList();
         }
-        public TodoViewModel Get(int id)
+        internal TodoViewModel Get(int id)
         {
             return context.Todo.Select(d => new TodoViewModel { ID = d.ID, Title = d.Title, TotalItem = d.TodoItem.Count }).SingleOrDefault(d => d.ID == id);
+        }
+
+        internal int Delete(int id)
+        {
+                var data = context.Todo.SingleOrDefault(d=> d.ID==id);
+                context.Todo.Remove(data);
+            return context.SaveChanges();
         }
     }
 

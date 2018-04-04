@@ -1,13 +1,13 @@
 <h1>Todo item {{ todo.id }} </h1>
 
-<p>Editint item {{ todo.title }}.</p>
+<p>Edit item {{ todo.title }}.</p>
 
 <p *ngIf="!todo"><em>Loading...</em></p>
 <!-- <label>item: </label>  -->
 <div class="col-md-3 input-group">
 <input [(ngModel)]="todoitem.item" class="form-control " placeholder="new todo item"/>
 <span class="input-group-btn">
-    <button (click)="Additem(todoitem)" class="btn  btn-primary " >Add</button>
+    <button (click)="Additem()" class="btn  btn-primary " >Add</button>
 </span>
 </div>
 <table class='table' *ngIf="todoItems">
