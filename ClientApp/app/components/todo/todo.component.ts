@@ -11,7 +11,7 @@ export class TodoComponent {
     public todos: ITodo[] = [];
     public todo: ITodo = {title:"" ,id:0, TotalItem:0 };
 
-    constructor(private http: Http, private Todoservice: TodoService) {
+    constructor(private Todoservice: TodoService) {
         this.getTodo();
     }
     initempty(): void {

@@ -15,7 +15,7 @@ export class TodoitemComponent {
     public todoitem: ITodoItem = { item:"", id:0 };
     public todoItems: ITodoItem[] = [];
 
-    constructor(private http: Http, private todoservice: TodoService, private route: ActivatedRoute,private location: Location) {
+    constructor(private todoservice: TodoService, private route: ActivatedRoute,private location: Location) {
         const id : any = this.route.snapshot.paramMap.get("id");
         if(id!==null) {
             this.todoId=parseInt(id, undefined);
